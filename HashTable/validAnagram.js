@@ -9,7 +9,10 @@ var isAnagram = function(s, t) {
     // return s.split('').sort().join('') === t.split('').sort().join('')
 
     // O(n) linear solution
-    if(s.length !== t.length ) return false;
+    if(s.length !== t.length ){
+        console.log('false')
+        return false;
+    } 
     
     //count the occurrences for each character
     
@@ -23,11 +26,19 @@ var isAnagram = function(s, t) {
     
     for (let char of t) {
         //return false if char in the object
-        if (!hash[char]) return false;
+        if (!hash[char]) {
+        console.log('false');
+        return false;
+    }
         
         // else decrement the counted char from the second array
         hash[char]--;
     }
     
+    console.log('true');
     return true;
 };
+
+// TEST CASE
+isAnagram('revert', 'start');
+isAnagram('heart', 'earth');
