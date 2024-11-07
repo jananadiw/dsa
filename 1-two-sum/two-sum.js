@@ -4,28 +4,25 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
+    // 2 + 7 = 9 target, return nums[0],nums[1]
+    // iterate twice with 2 vars.. => 
+    // for()
+    //   for() => 0n^2
+    // hashmap --> save the [complement, index] --> [(9-2), 0] -> [7, 0]
+    // [7, 0]
+    // [2, 1]
+    // [-2, 2]... 
 
-    // brute force: iterate through the array couple of times, searching for the match.
-    // Time Complexity: O(n^2).
-
-    // efficient to use a hashmap.
-    // use a hashmap & save the complement to current number and it's index;
-    /* 
-        {
-            7, 0,
-            2, 1
-        }
-    */
     let map = new Map();
-    for(let i=0; i <nums.length; i++){
-
+    
+    for(let i=0; i<nums.length; i++){
+        let complememt = target - nums[i];
         if(map.has(nums[i])){
-            // return the complement index and the current index
-            return [map.get(nums[i]), i];
+            return [map.get(nums[i]), i]
         }else{
-            // if not found, set the complement and current index in the hashmap
-            map.set((target - nums[i]), i);
+        map.set(complememt, i);
         }
+
     }
     return [];
 };
