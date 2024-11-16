@@ -3,24 +3,27 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-
-let stack = [];
-let brackets = new Map([
+    let bracketsMap = new Map([
     ['(' , ')'],
     ['[' , ']'],
     ['{' , '}',]
 ]);
-for (let c of s) {     
-        if (brackets.has(c)) {
-            // If c is an opening bracket, push it onto the stack
-            stack.push(c);
-        } else {
-            // If c is a closing bracket, check if it matches the top of the stack
-            if (stack.length === 0 || brackets.get(stack.pop()) !== c) {
+
+    //use a stack to store while iterating the string
+    // ([]) => we have to be deleting from the back of the list, top of the stack
+    // hense use a stack. 
+
+    let stack = [];
+    //if does not match, keep adding to the stack
+    for(let char of s){
+        if (bracketsMap.has(char)){
+            stack.push(char)
+        }else {
+            //if c is a closing bracket,
+            if (stack.length === 0 || bracketsMap.get(stack.pop()) !== char) {
                 return false;
             }
         }
     }
-
     return stack.length === 0;
 };
